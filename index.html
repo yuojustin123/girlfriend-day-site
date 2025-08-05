@@ -114,6 +114,11 @@
       <h2>(1 August 2025)</h2>
       <p class="text-black">Click the next button!! (つ◕౪◕)つ❤️</p>
       <div class="mt-4">
+        <button 
+          onclick="document.getElementById('bg-music').play();" 
+          class="button button-green"
+          aria-label="Play background music">
+          🎶 Play Background Music ♪
         </button>
       </div>
       <button class="button button-pink" id="nextButton" aria-label="Go to next message">Next!! ^w^</button>
@@ -147,8 +152,11 @@
     </section>
   </main>
 
-  <!-- Hidden YouTube Music Embed -->
-  <iframe id="bg-music" style="display:none" src="https://www.youtube.com/embed/cRqTvWWX70Y?autoplay=1&loop=1&playlist=cRqTvWWX70Y" allow="accelerometer; autoplay; encrypted-media; gyroscope"></iframe>
+  <!-- Placeholder for your audio background music -->
+  <audio id="bg-music" loop>
+    <source src="Cupid's Chokehold Breakfast in America.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     const step1 = document.getElementById('step1');
@@ -182,35 +190,6 @@
       step3.classList.add('hidden');
       step1.classList.remove('hidden');
     });
-
-    // Music control variables
-    const audio = document.getElementById('bg-music');
-    let hasInteracted = false;
-    
-    // Auto-play the music (works in some browsers with user interaction)
-    function tryAutoPlay() {
-      if (!hasInteracted) {
-        const playPromise = audio.play();
-        
-        if (playPromise !== undefined) {
-          playPromise.then(_ => {
-            // Audio is playing
-          })
-          .catch(error => {
-            // Auto-play prevented
-            console.log('Autoplay prevented:', error);
-          });
-        }
-      }
-    }
-    
-    // Event listener for user interaction
-    document.body.addEventListener('click', function() {
-      if (!hasInteracted) {
-        hasInteracted = true;
-        tryAutoPlay();
-      }
-    }, { once: true });
   </script>
 </body>
 </html>
